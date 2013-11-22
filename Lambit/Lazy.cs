@@ -41,7 +41,10 @@ namespace Lambit
         /// </summary>
         public static Lazy<T2> Bind<T, T2>(this Lazy<T> lazy, Func<T, Lazy<T2>> f)
         {
-            return Create(() => lazy.Select(f).Value.Value);
+            if(f == null)
+                throw new ArgumentNullException("f");
+                
+            return lazy.Map(x => f(x).Value);
         }
         /// <summary>
         /// Monadic bind operation. 
