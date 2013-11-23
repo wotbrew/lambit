@@ -65,47 +65,50 @@ namespace Lambit.Tests
             Assert.AreNotEqual(y, a);
         }
 
+
         [TestMethod]
-        public void TestMap()
+        public void TestFlatten()
         {
-            var justfoo = Maybe.Create("foo");
-            var nothing = default(Maybe<string>);
+            var m = Maybe.Create(Maybe.Create(1));
+            var flat = m.Flatten();
 
-            var upper = justfoo.Map(x => x.ToUpper());
-            var upperNothing = nothing.Map(x => x.ToUpper());
-
-            Assert.AreEqual("FOO", upper.OrDefault());
-            Assert.AreEqual(Maybe.Nothing, upperNothing);
+            Assert.AreEqual(Maybe.Create(1), flat);
         }
 
         [TestMethod]
-        public void TestBind()
+        public void TestAlt()
         {
-            var justfoo = Maybe.Create("foo");
-            var nothing = default(Maybe<string>);
+            var a = Maybe.Create(1);
+            var b = default(Maybe<string>);
 
-            var upper = justfoo.Bind(x => Maybe.Create(x.ToUpper()));
-            var foosGone = justfoo.Bind(x => default(Maybe<int>));
-            var upperNothing = nothing.Bind(x => Maybe.Create(x.ToUpper()));
+            var alta = a.Alt(() => Maybe.Create(2));
+            var altb = b.Alt(() => Maybe.Create("foo"));
 
-            Assert.AreEqual("FOO", upper.OrDefault());
-            Assert.AreEqual(Maybe.Nothing, foosGone);
-            Assert.AreEqual(Maybe.Nothing, upperNothing);
+            Assert.AreEqual(Maybe.Create(1), alta);
+            Assert.AreEqual(Maybe.Create("foo"), altb);
         }
 
         [TestMethod]
-        public void TestLinq()
+        public void TestAs()
         {
-            var just = from x in Maybe.Create(42)
-                       from y in Maybe.Create("foo")
-                       select y + x;
-            var none = from x in Maybe.Create(42)
-                       from y in default(Maybe<string>)
-                       select y + x;
+            IMaybe a = new Maybe<int>(1);
+            IMaybe b = Maybe.Nothing;
 
-            Assert.AreEqual("foo42", just.OrDefault());
-            Assert.AreEqual(Maybe.Nothing, none);
-
+            Assert.AreEqual(Maybe.Create(1), a.As<int>());
+            Assert.AreEqual(Maybe.Nothing, a.As<string>());
         }
+
+        [TestMethod]
+        public void TestWhere()
+        {
+            var a = Maybe.Create(1);
+            var b = Maybe.Create(2);
+            var c = Maybe.Create(4);
+
+            Assert.AreEqual(Maybe.Nothing, a.Where(x => x % 2 == 0));
+            Assert.AreEqual(b, b.Where(x => x % 2 == 0));
+            Assert.AreEqual(c, c.Where(x => x % 2 == 0));
+        }
+
     }
 }

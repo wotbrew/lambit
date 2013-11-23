@@ -12,7 +12,6 @@ namespace Lambit
     /// </summary>
     public static class SinglyLinkedList
     {
-
         /// <summary>
         /// The empty list, useful sometimes as input to builder functions
         /// </summary>
