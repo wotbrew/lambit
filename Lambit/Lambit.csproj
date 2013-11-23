@@ -39,10 +39,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Monoid.cs" />
     <Compile Include="MatchList.cs" />
+    <Compile Include="MatchSeq.cs" />
     <Compile Include="MaybeFunctor.cs" />
     <Compile Include="MaybeMonad.cs" />
     <Compile Include="Match.cs" />
+    <Compile Include="Num.cs" />
+    <Compile Include="Parse.cs" />
     <Compile Include="Seq.cs" />
     <Compile Include="SinglyLinkedList.cs" />
     <Compile Include="F.cs" />

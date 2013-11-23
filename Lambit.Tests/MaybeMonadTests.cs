@@ -41,5 +41,18 @@ namespace Lambit.Tests
 
         }
 
+        [TestMethod]
+        public void TestAggregateM()
+        {
+            var digits = new[] { "1", "2", "3" };
+            var bad = new[]{"1", "poo", "3"};
+
+            var six = digits.AggregateM(0, (st, x) => Parse.Int(x).Map(y => y + st));
+            var nothing = bad.AggregateM(0, (st, x) => Parse.Int(x).Map(y => y + st));
+
+            Assert.AreEqual(Maybe.Create(6), six);
+            Assert.AreEqual(Maybe.Nothing, nothing);
+        }
+
     }
 }

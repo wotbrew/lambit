@@ -144,6 +144,14 @@ namespace Lambit
         }
 
         /// <summary>
+        /// Create a maybe using the value provided. when the predicate is true
+        /// </summary>
+        public static Maybe<T> When<T>(bool predicate, T value)
+        {
+            return predicate ? Maybe.Create(value) : Maybe.Nothing;
+        }
+
+        /// <summary>
         /// Flatten a Maybe 'inside' a Maybe.
         /// </summary>
         public static Maybe<T> Flatten<T>(this Maybe<Maybe<T>> maybe)
@@ -168,6 +176,7 @@ namespace Lambit
             var def = maybe.OrDefaultUntyped();
             return maybe.HasValue && def is T ? Maybe.Create((T)def) : Maybe.Nothing;
         }
+
 
         /// <summary>
         /// Take the value in the maybe, if the predicate returns true for the value.
