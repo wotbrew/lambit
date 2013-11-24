@@ -13,7 +13,7 @@ Examples for lists:
 ```csharp
 var myArray = new {1, 2, 3};
 
-var matched = myArray()
+var matched = myArray
     .Match() // begin the match expression
     .Case((a, b) => a + b) //here we match a list with exactly 2 elements.
     //here we match using a cons pattern, in this case, a list with at 
