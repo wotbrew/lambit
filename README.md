@@ -57,7 +57,7 @@ var dirty = new
   Fourty = "I AM NOT 42"
 };
 
-/// Result will be a Either<int, string> containing the 'Does huehue look like 40 to you?'
+/// Result will be a Either<int, string> containing the 'Does I AM NOT 42 look like 40 to you?'
 var fourtyTwo = from two in Parse.Int(dirty.Two).OrValue("Uh... this ain't two")
                 from fourty in Either.Maybe(dirty.Fourty, Parse.Int, (n) => string.Format("Does {0} look like 40 to you?", n))
                 select fourty + two;
