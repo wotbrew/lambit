@@ -119,5 +119,19 @@ namespace Lambit
         {
             return either.Resolve(Fun.Id, Fun.Id);
         }
+
+        /// <summary>
+        /// Attempt to resolve a value from the maybe function.
+        /// otherwise return the alternative provided by the 'otherwise' function.
+        /// </summary>
+        public static Either<T2, T3> Maybe<T, T2, T3>(T value, Func<T, Maybe<T2>> maybe, Func<T, T3> otherwise)
+        {
+            if (maybe == null)
+                throw new ArgumentNullException("maybe");
+            if (otherwise == null)
+                throw new ArgumentNullException("otherwise");
+
+            return maybe(value).Resolve(() => otherwise(value));
+        }
     }
 }
