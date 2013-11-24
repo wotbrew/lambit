@@ -29,6 +29,11 @@ namespace Lambit
         {
             return null;
         }
+
+        public override string ToString()
+        {
+            return "Nothing";
+        }
     }
 
     /// <summary>
@@ -109,6 +114,18 @@ namespace Lambit
                 return Maybe.Nothing.GetHashCode();
         }
 
+        public override string ToString()
+        {
+            if (HasValue)
+            {
+                if (_val != null)
+                    return _val.ToString();
+
+                return "null";
+            }
+
+            return "Nothing";
+        }
 
         object IMaybe.OrDefaultUntyped()
         {
@@ -156,8 +173,9 @@ namespace Lambit
         /// </summary>
         public static Maybe<T> Flatten<T>(this Maybe<Maybe<T>> maybe)
         {
-            return maybe.Bind(F.Id);
+            return maybe.Bind(Fun.Id);
         }
+
 
         /// <summary>
         /// Take the maybe if it has a value, otherwise take the maybe supplied by the 
@@ -188,6 +206,8 @@ namespace Lambit
 
             return maybe.OrDefault(predicate) ? maybe : Maybe.Nothing;
         }
+
+       
     }
 
 

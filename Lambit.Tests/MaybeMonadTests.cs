@@ -54,5 +54,20 @@ namespace Lambit.Tests
             Assert.AreEqual(Maybe.Nothing, nothing);
         }
 
+        [TestMethod]
+        public void TestSumM()
+        {
+            var digits = new[] { "1", "2", "3" };
+            var tens = new[] { "10", "10", "10" };
+            var bad = new[] { "1", "333fsdfdsf", "10" };
+
+            var six = digits.Select(Parse.Int).SumM(Monoid.IntAdd);
+            var thousand = tens.Select(Parse.Int).SumM(Monoid.IntMult);
+            var screwed = bad.Select(Parse.Int).SumM(Monoid.IntAdd);
+
+            Assert.AreEqual(Maybe.Create(6), six);
+            Assert.AreEqual(Maybe.Create(1000), thousand);
+            Assert.AreEqual(Maybe.Nothing, screwed);
+        }
     }
 }

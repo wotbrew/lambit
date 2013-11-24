@@ -39,6 +39,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Either.cs" />
+    <Compile Include="EitherBuilder.cs" />
+    <Compile Include="EitherFunctor.cs" />
+    <Compile Include="EitherMonad.cs" />
+    <Compile Include="MaybeEither.cs" />
     <Compile Include="Monoid.cs" />
     <Compile Include="MatchList.cs" />
     <Compile Include="MatchSeq.cs" />
@@ -49,7 +54,7 @@
     <Compile Include="Parse.cs" />
     <Compile Include="Seq.cs" />
     <Compile Include="SinglyLinkedList.cs" />
-    <Compile Include="F.cs" />
+    <Compile Include="Fun.cs" />
     <Compile Include="Lazy.cs" />
     <Compile Include="Maybe.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

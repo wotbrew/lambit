@@ -93,9 +93,6 @@ namespace Lambit
             var m = Maybe.Create(seed);
             for (var i = src.Count -1 ; i > 0 && m.HasValue; i--)
             {
-                if (!m.HasValue)
-                    break;
-
                 m = m.Bind(st => accum(st, src[i]));
             }
             return m;
@@ -118,14 +115,6 @@ namespace Lambit
                 throw new ArgumentNullException("monoid");
 
             return src.AggregateM(monoid.Identity, (n, a) => a.Map(x => monoid.Concat(n, x)));
-        }
-
-        /// <summary>
-        /// Monadic sum, short circuit the sum of the result becomes nothing at any step.
-        /// </summary>
-        public static Maybe<int> SumM<T>(this IEnumerable<Maybe<int>> src)
-        {
-            return src.SumM(Monoid.IntAdd);
         }
 
         /// <summary>

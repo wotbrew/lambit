@@ -50,12 +50,16 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="EitherFunctorTests.cs" />
+    <Compile Include="EitherMonadTests.cs" />
+    <Compile Include="EitherTests.cs" />
     <Compile Include="MatchTests.cs" />
+    <Compile Include="MaybeEitherTests.cs" />
     <Compile Include="MaybeMonadTests.cs" />
     <Compile Include="MaybeFunctorTests.cs" />
     <Compile Include="MaybeTests.cs" />
     <Compile Include="TupleSeqTests.cs" />
-    <Compile Include="FTests.cs" />
+    <Compile Include="FunTests.cs" />
     <Compile Include="LazyTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SinglyLinkedListTests.cs" />

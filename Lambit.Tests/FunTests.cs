@@ -5,13 +5,13 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Lambit.Tests
 {
     [TestClass]
-    public class FTests
+    public class FunTests
     {
         [TestMethod]
         public void TestId()
         {
             var x = 1;
-            Assert.AreEqual(1, F.Id(x));
+            Assert.AreEqual(1, Fun.Id(x));
         }
 
         [TestMethod]
@@ -20,8 +20,8 @@ namespace Lambit.Tests
             var pair = Tuple.Create("foo", "bar");
             var pair2 = new KeyValuePair<string, string>("fred", "jim");
 
-            var a = F.First(pair);
-            var b = F.First(pair2);
+            var a = Fun.First(pair);
+            var b = Fun.First(pair2);
 
             Assert.AreEqual("foo", a);
             Assert.AreEqual("fred", b);
@@ -34,8 +34,8 @@ namespace Lambit.Tests
             var pair = Tuple.Create("foo", "bar");
             var pair2 = new KeyValuePair<string, string>("fred", "jim");
 
-            var a = F.Second(pair);
-            var b = F.Second(pair2);
+            var a = Fun.Second(pair);
+            var b = Fun.Second(pair2);
 
             Assert.AreEqual("bar", a);
             Assert.AreEqual("jim", b);
