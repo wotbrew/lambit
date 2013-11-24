@@ -7,7 +7,7 @@ Functional Library for C#. Bring some of that sexy stuff from Haskell, F#, Cloju
 
 #Pattern Matching and Destructuring
 
-We have are able to do destructuring matches in C# by using 'match' values, which can be composed together to form a kind of ad-hoc pattern match expression.
+We are able to do destructuring matches in C# by using 'match' values, which can be composed together to form a kind of ad-hoc pattern match expression.
 
 Examples for lists:
 ```csharp
@@ -54,10 +54,10 @@ var fourtyTwo = from two in Parse.Int(dirty.Two)
 var dirty = new
 {
   Two = "2",
-  Fourty = "I AM NOT 42"
+  Fourty = "I AM NOT 40"
 };
 
-/// Result will be a Either<int, string> containing the 'Does I AM NOT 42 look like 40 to you?'
+/// Result will be a Either<int, string> containing the 'Does I AM NOT 40 look like 40 to you?'
 var fourtyTwo = from two in Parse.Int(dirty.Two).OrValue("Uh... this ain't two")
                 from fourty in Either.Maybe(dirty.Fourty, Parse.Int, (n) => string.Format("Does {0} look like 40 to you?", n))
                 select fourty + two;
