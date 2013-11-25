@@ -96,7 +96,7 @@ namespace Lambit
 
             //imperative loop is for effiency with the lack of tail-recursion optimization
             var e = new Either<T3, T2>(seed);
-            for (var i = src.Count - 1; i > 0 && e.Left.HasValue; i--)
+            for (var i = src.Count - 1; i >= 0 && e.Left.HasValue; i--)
             {
                 e = e.Bind(st => accum(st, src[i]));
             }

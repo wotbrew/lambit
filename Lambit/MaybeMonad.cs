@@ -91,7 +91,7 @@ namespace Lambit
 
             //imperative loop is for effiency with the lack of tail-recursion optimization
             var m = Maybe.Create(seed);
-            for (var i = src.Count -1 ; i > 0 && m.HasValue; i--)
+            for (var i = src.Count -1 ; i >= 0 && m.HasValue; i--)
             {
                 m = m.Bind(st => accum(st, src[i]));
             }
